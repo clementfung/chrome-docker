@@ -1,6 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && apt-get clean && apt-get install -y \
+    python3-pip \
     bzip2 \
     libgconf-2-4 \
     libgtk2.0-0 \
@@ -21,6 +22,11 @@ RUN useradd apps \
 COPY libgcrypt11_1.5.3-2.deb /
 
 RUN dpkg -i libgcrypt11_1.5.3-2.deb
+
+RUN pip3 install tldextract
+RUN pip3 install flask
+RUN pip3 install flask_restful
+RUN pip3 install configparser
 
 COPY bootstrap.sh /
 
